@@ -1,17 +1,30 @@
-var orm = require("../config/orm.js");
+// Node Dependency
+var orm = require('../config/orm.js');
 
+
+// create the code that will call the ORM functions using burger specific input for the ORM.
 var burger = {
-    all: function (cb) {
+
+    selectAll: function (callback) {
         orm.selectAll(function (res) {
-            cb(res);
+            callback(res);
         });
     },
-    create: function (name, cb) {
-        orm.insertOne(name, cb);
+
+    insertOne: function (burger_name, callback) {
+        orm.insertOne(burger_name, function (res) {
+            callback(res);
+        });
     },
-    update: function (id, cb) {
-        orm.updateOne(id, cb);
+
+    updateOne: function (burger_id, callback) {
+        orm.updateOne(burger_id, function (res) {
+            callback(res);
+        });
     }
+
 };
+
+
 
 module.exports = burger;
