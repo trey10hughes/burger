@@ -1,0 +1,55 @@
+<div class="row">
+    <center>
+
+        
+        <!-- Left side (ready to eat) -->
+        <div class="col-md-6">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Ready to eat!</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="text-center">
+                        
+                        <div id="ready_to_eat">
+                        
+                            <!-- Dynamically Insert Ready Burgers Here -->
+                            {{#each burgers}} {{#unless devoured}}
+                            <form action="burger/eat/{{id}}" method="POST">
+                                <div class="input-group">
+                                    <li class="form-control">{{id}}. {{burger_name}}</li>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success devour-button" type="submit">Devour It!</button>
+                                    </span>
+                                </div>
+                            </form>
+                            {{/unless}} {{/each}}
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Right side (already eaten) -->
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Already Eaten!</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="text-center">
+
+                <!-- Dynamically Insert Eaten Burgers Here -->
+                {{#each burgers}} {{#if this.devoured}}
+                <div class="input-group">
+                    <li class="form-control">{{this.id}}. {{this.burger_name}}</li>
+                </div>
+                {{/if}} {{/each}}
+
+            </div>
+        </div>
+    </center>
+</div>
